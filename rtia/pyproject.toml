@@ -3,12 +3,19 @@ name = "realtime-image-analysis"
 version = "0.1.0"
 description = "Analysing images in real time from my street with OpenCV"
 authors = ["Natan Nascimento <natan.nascimento@xpi.com.br>"]
+packages = [
+    { include = "app" }
+]
+
+[tool.poetry.scripts]
+start = "app:main"
 
 [tool.poetry.dependencies]
 python = "3.8"
 opencv-python = "^4.5.4"
 python-dotenv = "^0.19.2"
 pytest = "^6.2.5"
+numpy = "^1.22.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
