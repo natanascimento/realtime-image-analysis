@@ -1,8 +1,8 @@
 from app.domain import CreateCameraAnalysis
 
-__version__ = '0.1.0'
+__version__ = '1.0.0'
 
 def main():
-    print("[INFO] Object Detection v1.0, Loading...")
+    print(f"[INFO] Object Detection v{__version__}, Loading...")
     CreateCameraAnalysis().execute()
     
