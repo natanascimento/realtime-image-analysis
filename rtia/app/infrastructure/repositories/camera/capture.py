@@ -64,7 +64,7 @@ class CameraCapture:
             print("[INFO] Elapsed Time: {} | Persons in the Image: {}".format(output["elapsed_time"],
                                                                               output["persons"]))
 
-            cv2.imshow("teste", image)
+            cv2.imshow("Image Captured", image)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 print("[INFO] Detector was been paused!")
