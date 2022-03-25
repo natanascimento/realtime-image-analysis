@@ -17,3 +17,10 @@ class Settings:
 
     MODEL_PATH = join(ROOT_PATH, "model", "mobilenet_ssd.pb")
     MODEL_THRESHOLD = 0.7
+
+
+    DB_TYPE = environ.get('DB_TYPE')
+    DB_USER = environ.get('DB_USER')
+    DB_PASSWORD = environ.get('DB_PASSWORD')
+    DB_CLUSTER = environ.get('DB_CLUSTER')
+    DB_NAME = environ.get('DB_NAME')
