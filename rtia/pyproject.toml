@@ -20,6 +20,8 @@ tensorflow = "^2.0.0"
 six = "^1.6.0"
 imutils = "^0.5.4"
 tqdm = "^4.63.0"
+certifi = "^2021.10.8"
+pymongo = {extras = ["srv"], version = "^4.0.2"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
