@@ -10,3 +10,4 @@ class Settings:
     MODELS_PATH = join(PROJECT_PATH, "models")
     
     HAARCASCADE_FULL_BODY = join(MODELS_PATH, "haarcascade_fullbody.xml")
+    HAARCASCADE_HALF_BODY = join(MODELS_PATH, "haarcascade_upperbody.xml")
