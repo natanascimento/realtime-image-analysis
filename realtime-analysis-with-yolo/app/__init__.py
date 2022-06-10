@@ -1,4 +1,4 @@
-from app.infrastructure.repositories.camera.capture import CameraCapture
+from app.infrastructure.repositories import CameraCapture
 
 
 def main():
