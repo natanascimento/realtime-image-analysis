@@ -11,8 +11,8 @@ from app.infrastructure.repositories.detector import ObjectDetector
 
 class CameraCapture:
 
-    def __init__(self) -> None:
-        self.__object_detector = ObjectDetector()
+    def __init__(self, detector: ObjectDetector) -> None:
+        self.__object_detector = detector
 
     @staticmethod
     def __loading():
