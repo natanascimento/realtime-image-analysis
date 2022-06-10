@@ -1,5 +1,5 @@
-from app.infrastructure.repositories import CameraCapture
+from app.domain.camera import CreateObjectDetection
 
 
 def main():
-    CameraCapture().run()
+    CreateObjectDetection().execute()

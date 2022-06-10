@@ -1,5 +1,7 @@
-from app.infrastructure.repositories.camera.capture import CameraCapture
+from app.infrastructure.repositories.camera import CameraCapture
+from app.infrastructure.repositories.detector import ObjectDetector
 
 __all__ = [
-    "CameraCapture"
+    "CameraCapture",
+    "ObjectDetector"
 ]
