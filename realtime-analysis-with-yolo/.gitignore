@@ -1,0 +1,5 @@
+#Models weights
+*.weights
+
+#Images test
+images/
