@@ -12,4 +12,6 @@ class DetectionCreationResponse:
 
 @dataclass
 class People:
+    location: str
     quantity: str
+    created_at: str

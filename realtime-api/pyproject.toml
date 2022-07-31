@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "people-detection-api-management"
-version = "0.1.5"
+version = "0.2.0"
 description = "API to manage object detection data"
 authors = ["Natan Nascimento <natanascimentom@outlook.com>"]
 packages = [
@@ -15,6 +15,8 @@ python = "^3.8"
 fastapi = "^0.79.0"
 uvicorn = {extras = ["standard"], version = "^0.18.2"}
 pydantic = "^1.9.1"
+python-dotenv = "^0.20.0"
+pymongo = {extras = ["srv"], version = "^4.2.0"}
 
 [tool.poetry.dev-dependencies]
 
