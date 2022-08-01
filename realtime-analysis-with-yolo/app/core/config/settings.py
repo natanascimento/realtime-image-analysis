@@ -20,6 +20,21 @@ class Settings:
     COCO_CLASS_NAMES = join(YOLOV3_PATH, "coco.names")
 
     THRESHOLD_LEVEL = 0.3
+
+
+class APISettings:
+
+    communication_type = "http"
+    hostname = "192.168.1.167"
+    port = 8000
+    version = "v1"
+
+    def __init__(self, endpoint: str):
+        self.__endpoint = endpoint
+
+    @property
+    def url(self) -> str:
+        return f"{self.communication_type}://{self.hostname}:{self.port}/api/{self.version}/{self.__endpoint}"
     
 
 class YoloSettings(Settings):

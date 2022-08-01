@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 
 
-class DetectionConnectionRequest(BaseModel):
+class PeopleDetectionRequest(BaseModel):
     location: str = Field(min_length=1, max_length=249)
     quantity: int
     detected_at: str = Field(min_length=1)

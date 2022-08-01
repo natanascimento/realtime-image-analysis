@@ -2,4 +2,4 @@ from app.domain.camera import CreateObjectDetection
 
 
 def main():
-    CreateObjectDetection().execute()
+    CreateObjectDetection(location="descompressao").execute()
