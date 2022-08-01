@@ -1,25 +1,29 @@
 import warnings
 
-from typing import List
 from datetime import datetime
+
+from typing import List
 
 import cv2
 import numpy as np
 
-from app.core.config import settings
+from app.core.config import settings, APISettings
 from app.infrastructure.repositories.detector.models import YoloModelLoader
+from app.infrastructure.repositories.producer import DataProducer
 
 warnings.filterwarnings("ignore")
 
 
 class ObjectDetector(YoloModelLoader):
 
-    def __init__(self) -> None:
+    def __init__(self, location: str) -> None:
+        self.__location = location
         super().__init__()
         self.__net = self.load(type="accuracy")
         self.__font = cv2.FONT_HERSHEY_PLAIN
         self.__colors = np.random.uniform(0, 255, size=(100, 3))
         self.__classes = self.__get_classes()
+        self.__api_url = APISettings(endpoint="data/detection").url
         
     @staticmethod
     def __get_classes() -> List:
@@ -75,7 +79,12 @@ class ObjectDetector(YoloModelLoader):
                 cv2.rectangle(source_image, (x,y), (x+w, y+h), color, 2)
                 cv2.putText(source_image, label + " " + confidence, (x, y+20), self.__font, 2, (255,255,255), 2)
 
-                print(f"{label}: {confidence} {quantity} | {datetime.now()}")
+                payload = {"location": str(self.__location),
+                           "quantity": quantity,
+                           "detected_at": str(datetime.now())}
+
+                DataProducer.produce(url=self.__api_url,
+                                     payload=payload)
       
         cv2.imshow(str(settings.APP_NAME), source_image)
 

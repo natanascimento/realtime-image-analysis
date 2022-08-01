@@ -133,3 +133,9 @@ poetry.lock
 
 #Removing OS X path
 .DS_Store*
+
+#Removing .vscode path
+.vscode/
+
+#Removing .idea path
+.idea/

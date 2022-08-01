@@ -1,8 +1,9 @@
-from app.core.config.settings import Settings, YoloSettings
+from app.core.config.settings import Settings, YoloSettings, APISettings
 
 settings = Settings()
 
 __all__ = [
   settings, 
-  "YoloSettings"
+  "YoloSettings",
+  "APISettings"
 ]
