@@ -1,26 +1,33 @@
 import warnings
-warnings.filterwarnings("ignore")
+
+from datetime import datetime
+
+from typing import List
 
 import cv2
 import numpy as np
 
-from app.core.config import settings
+from app.core.config import settings, APISettings
 from app.infrastructure.repositories.detector.models import YoloModelLoader
+from app.infrastructure.repositories.producer import DataProducer
+
+warnings.filterwarnings("ignore")
 
 
 class ObjectDetector(YoloModelLoader):
 
-    def __init__(self) -> None:
+    def __init__(self, location: str) -> None:
+        self.__location = location
         super().__init__()
         self.__net = self.load(type="accuracy")
         self.__font = cv2.FONT_HERSHEY_PLAIN
         self.__colors = np.random.uniform(0, 255, size=(100, 3))
         self.__classes = self.__get_classes()
+        self.__api_url = APISettings(endpoint="data/detection").url
         
     @staticmethod
-    def __get_classes():
-        classes = []
-        
+    def __get_classes() -> List:
+
         with open(settings.COCO_CLASS_NAMES, "r") as class_names:
             classes = class_names.read().splitlines()
         
@@ -40,7 +47,8 @@ class ObjectDetector(YoloModelLoader):
         boxes = []
         confidences = []
         class_ids = []
-        
+        quantity = 0
+
         for output in layers_outputs:
             for detection in output:
                 scores = detection[5:]
@@ -65,10 +73,18 @@ class ObjectDetector(YoloModelLoader):
             for i in indexes.flatten():
                 x, y, w, h = boxes[i]
                 label = str(self.__classes[class_ids[i]])
-                confidence = str(round(confidences[i],2))
+                confidence = str(round(confidences[i], 2))
                 color = self.__colors[i]
+                quantity += 1
                 cv2.rectangle(source_image, (x,y), (x+w, y+h), color, 2)
                 cv2.putText(source_image, label + " " + confidence, (x, y+20), self.__font, 2, (255,255,255), 2)
+
+                payload = {"location": str(self.__location),
+                           "quantity": quantity,
+                           "detected_at": str(datetime.now())}
+
+                DataProducer.produce(url=self.__api_url,
+                                     payload=payload)
       
         cv2.imshow(str(settings.APP_NAME), source_image)
 
