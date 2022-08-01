@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "people-detection-api-management"
-version = "0.2.0"
+version = "0.3.0"
 description = "API to manage object detection data"
 authors = ["Natan Nascimento <natanascimentom@outlook.com>"]
 packages = [
